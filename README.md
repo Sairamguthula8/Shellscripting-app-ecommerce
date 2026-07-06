@@ -177,3 +177,85 @@ sudo sed -i 's/172.20.1.101/localhost/g' /var/www/html/index.php
 ```
 curl http://localhost
 ```
+
+# E-Commerce Application Deployment Script
+
+This repository contains a shell script that automates the deployment of the sample e-commerce application on CentOS/RHEL-based systems.
+
+## Usage
+
+1. Save the script as `deploy-ecommerce.sh`.
+
+2. Make the script executable:
+
+```bash
+chmod +x deploy-ecommerce.sh
+```
+
+3. Run the deployment script:
+
+```bash
+sudo ./deploy-ecommerce.sh
+```
+
+---
+
+## What the Script Does
+
+The deployment script automatically performs the following tasks:
+
+- ✅ Installs **Firewalld**
+- ✅ Installs and starts **MariaDB**
+- ✅ Creates the application database
+- ✅ Creates the database user and grants the required privileges
+- ✅ Loads the sample product inventory into the database
+- ✅ Installs **Apache HTTP Server**
+- ✅ Installs **PHP**, **php-mysqlnd**, and **Git**
+- ✅ Opens firewall ports **80 (HTTP)** and **3306 (MariaDB)**
+- ✅ Clones the e-commerce application from GitHub
+- ✅ Creates the application's `.env` configuration file
+- ✅ Updates `index.php` to load environment variables
+- ✅ Sets the appropriate file permissions
+- ✅ Restarts the Apache web server
+- ✅ Verifies the deployment using:
+
+```bash
+curl http://localhost
+```
+
+---
+
+## Default Configuration
+
+| Setting | Value |
+|---------|-------|
+| Database | `ecomdb` |
+| Username | `ecomuser` |
+| Password | `ecompassword` |
+| Host | `localhost` |
+
+---
+
+## Notes
+
+- This deployment script is designed for **CentOS/RHEL systems that use `yum`**.
+- It assumes **MariaDB** can be installed without requiring a root password during setup.
+- If you are using **CentOS Stream 9**, **RHEL 9**, **Rocky Linux**, **AlmaLinux**, or **Amazon Linux 2023**, package names and service names may differ. You may need to update the script to use the appropriate `dnf` packages (for example, `mariadb105-server` or `mysql-server`).
+- For multi-node deployments, update the `.env` file to point `DB_HOST` to the database server IP address.
+- Ensure the server has internet access to download required packages and clone the application repository.
+
+---
+
+## Testing
+
+After deployment, verify that the application is running:
+
+```bash
+curl http://localhost
+```
+
+Or open the application in your browser:
+
+```
+http://<server-ip>
+```
