@@ -9,7 +9,7 @@ DB_USER="ecomuser"
 DB_PASSWORD="ecompassword"
 
 WEBROOT="/var/www/html"
-REPO="https://github.com/kodekloudhub/learning-app-ecommerce.git"
+REPO="https://github.com/Sairamguthula8/Shellscripting-app-ecommerce.git"
 
 #############################
 # Detect package manager
